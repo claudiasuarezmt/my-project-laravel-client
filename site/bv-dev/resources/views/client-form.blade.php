@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-    Register Client
+    Form Client
 @endsection
 
 @section('content')
@@ -13,16 +13,14 @@
                         <h4> Register Cient</h4>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('clients.save') }}" method="post">
+                        <form action="{{ route('client-create') }}" method="post">
                             @csrf
                             <div class="form-group">
                                 <label for="">First Name *</label>
                                 <input type="text" class="form-control" name="txtfirstname">
-                                @if ($errors->any())
-                                    <span class="text-danger">{{ $errors->first() }}</span>
-                                @endif
+
                             </div>
-                            {{-- <div class="form-group">
+                            <div class="form-group">
                                 <label for="">Last Name *</label>
                                 <input type="text" class="form-control" name="txtlastname">
                             </div>
@@ -33,19 +31,13 @@
                             <div class="form-group">
                                 <label for="">Phone</label>
                                 <input type="text" class="form-control" name="txtphoneclient">
-                            </div> --}}
+                            </div>
                         </form>
 
 
 
                         <div class="text-center">
                             <button class="btn btn-outline-primary mt-3"> Save Client</button>
-                            <br>
-                            @if ($message = Session::get('result'))
-                                <div class="alet alert-primary">
-                                    {{ $message }}
-                                </div>
-                            @endif
                         </div>
 
 

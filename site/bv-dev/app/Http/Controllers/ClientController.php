@@ -9,33 +9,21 @@ class ClientController extends Controller
 {
     //metodo index
 
-    public function index()
+    public function viewClientList()
     {
-        $texto = "Project LARAVEL";
-        return view("clients/index", compact("texto"));
+        return view("client-list");
     }
 
-    public function create()
+    public function viewClientCreate()
     {
-        return view("clients.create");
+        return view("view-client-create");
     }
     /**
      * realizar registro
      */
 
-    public function save()
+    public function viewClientUpdate()
     {
-        //validar datos
-        $validar = request()->validate(
-            [
-                'txtfirstname' => 'required'
-            ],
-            ['txtfirstname.required' => 'the field is required ):']
-        );
-        //Registro cliente
-        Client::create([
-            'first_name' => request()->txtfirstname
-        ]);
-        return redirect()->route('clients.create')->with('result', 'client registred');
+        return view("viewClientUpdate");
     }
 }
