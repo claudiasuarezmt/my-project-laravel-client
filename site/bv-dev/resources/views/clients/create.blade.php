@@ -1,60 +1,58 @@
 @extends('layout')
 
-@section('title', "Crear cliente")
+@section('title')
+    Register Client
+@endsection
 
 @section('content')
-<head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<script type="text/javascript" src="js/scriptClient.js"></script>
-</head>
-<body>
-    <div class="card">
-        <h4 class="card-header">Create client</h4>
-        <div class="card-body">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-xl-7 col-lg-7 col-md-9 col-sm-10 col-12 ">
+                <div class="card shadow">
+                    <div class="card-header">
+                        <h4> Register Cient</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ route('clients.save') }}" method="post">
+                            @csrf
+                            <div class="form-group">
+                                <label for="">First Name *</label>
+                                <input type="text" class="form-control" name="txtfirstname">
+                                @if ($errors->any())
+                                    <span class="text-danger">{{ $errors->first() }}</span>
+                                @endif
+                            </div>
+                            {{-- <div class="form-group">
+                                <label for="">Last Name *</label>
+                                <input type="text" class="form-control" name="txtlastname">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Email *</label>
+                                <input type="text" class="form-control" name="txtemailclient">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Phone</label>
+                                <input type="text" class="form-control" name="txtphoneclient">
+                            </div> --}}
+                        </form>
 
-            <div id="menu"></div>
-            <div id="loginzone"><a href="/oauth2/authorization/github">Haz click para iniciar Sesión</a></div>
-            <div id="userZone" style="display: none"></div>
-            <div class="contenido">
-              <h1>
-                <p>Clients List</p>
-              </h1>
+
+
+                        <div class="text-center">
+                            <button class="btn btn-outline-primary mt-3"> Save Client</button>
+                            <br>
+                            @if ($message = Session::get('result'))
+                                <div class="alet alert-primary">
+                                    {{ $message }}
+                                </div>
+                            @endif
+                        </div>
+
+
+                    </div>
+                </div>
             </div>
-            
-            
-            <div>
-                <table id="example" class="display" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            
-                        </tr>
-                    </thead>
-                    <tfoot>
-                        <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                        </tr>
-                    </tfoot>
-                </table>
-              <br>
-              <br>
-              <br>
-              <br>
-              <br>
-            </div>
-            <div class="botones">
-              <button onclick="getClients()">See Clients</button>
-              <button onclick="habilitaDatosCliente(1)">Create Client</button>
-            </div>
-            <div class="formulario" id="campos">
-            </div>
+
+
         </div>
-    </div>
-</body>
-@endsection
+    @endsection
